@@ -1,71 +1,26 @@
 import React from "react";
-import { FaRegBookmark } from "react-icons/fa";
-import { FaBookmark } from "react-icons/fa";
-import TagChip from "./TagChip";
-import { GoShieldCheck } from "react-icons/go";
-import SalaryandType from "./SalaryandType";
+
+
 import { jobListings } from "../data/sample";
+import JobCard from "./JobCard";
+
 
 const JobList = ({ jobList }) => {
   const onBookmarkclick = () => {};
 
-  return <div className="w-[500px]">
-    {jobListings.map((job,index)=>{
-        return <JobCard job={job} key={index}/>
-    })}
-  </div>;
+  return (
+    <div className="h-[calc(100vh-160px)] overflow-scroll">
+      {jobListings.map((job, index) => {
+        return <JobCard job={job} key={index} />;
+      })}
+    </div>
+  );
 };
 
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export const JobCard = ({ job, isActive=true }) => {
-  const { title, description, icon, skills, type, salary, total } = job;
-  const isBookmarked = false;
-  return (
-    <>
-      <div
-        className={`"flex flex-col rounded-lg p-4  shadow-md m-4 truncate text-ellipsis " ${
-          isActive ? "bg-green-200" : "bg-white"
-        }`}
-      >
-        {/* header */}
-        <div className="flex">
-          <div className="flex flex-grow items-center">
-            <span className="w-16 p-4 bg-yellow-100 rounded-lg  mr-2">
-              <img className="object-contain " src={icon} alt="" />
-            </span>
-            <div className="flex-grow flex flex-col w-[10px] mr-2">
-              <p className={`truncate`}>{title}</p>
-              <p className="truncate text-gray-500">{description}</p>
-            </div>
-          </div>
-          <span className="self-start border-gray-400 border-2 p-4 rounded-lg text-xl">
-            {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
-          </span>
-        </div>
-        {/* body */}
-        <div>
-          <div className="py-4 text-sm">
-            {skills.map((skill, index) => {
-              return <TagChip  skill={skill} key={index} />;
-            })}
-          </div>
-          <div className="flex mx-3 justify-between text-gray-400 text-[.8rem] items-center">
-            <SalaryandType salary={salary} type={type} />
-            <div className="flex items-center gap-4">
-              <div className="flex items-center justify-center p-1">
-                <GoShieldCheck className="text-lg text-blue-500 mt-1 mr-1" />
-                <p>Verified Recruiter</p>
-              </div>
-              <div className="text-black">Number of applicants {total}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+
 
 export default JobList;

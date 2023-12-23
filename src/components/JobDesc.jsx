@@ -8,7 +8,7 @@ const JobDesc = ({ job }) => {
   const isBookmarked = false;
   const { title, icon, description, requirements, skills, type, salary } = job;
   return (
-    <div className="w-1/2 flex flex-col text-black bg-white p-4 m-4 rounded-lg font-sans">
+    <div className="max-h-[90vh] overflow-scroll flex flex-col text-black bg-white p-4 rounded-lg font-sans">
       {/* topheader  */}
       <div className="flex justify-between mb-2">
         <div className="flex flex-grow">
@@ -26,7 +26,7 @@ const JobDesc = ({ job }) => {
       </div>
       {/* body */}
       <div className="mx-4 font-thin *:mt-4">
-        <p className="font-bold">Project overview</p>
+        <p className="font-bold">Job overview</p>
         <p>{description}</p>
         <p className="font-bold">Requierements</p>
         <div className="mx-5 ">
@@ -44,7 +44,7 @@ const JobDesc = ({ job }) => {
         </div>
       </div>
       <div className="w-full flex justify-end">
-        <button className="bg-accent-color rounded-lg text-white w-1/4 py-2 mt-4" >Apply</button>
+        <button className="bg-accent-color rounded-lg text-white w-1/4 py-2 mt-4" >Copy Link</button>
       </div>
     </div>
   );
