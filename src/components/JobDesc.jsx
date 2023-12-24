@@ -3,17 +3,19 @@ import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import TagChip from "./TagChip";
 import SalaryandType from "./SalaryandType";
+import defalutIcon from "../assets/defalut_logo.png"
 
 const JobDesc = ({ job }) => {
   const isBookmarked = false;
-  const { title, icon, description, requirements, skills, type, salary } = job;
+  const hostName = window.location.protocol + '//' + window.location.host;
+  const { title, icon, description, requirements, skills, type, salary,id } = job;
   return (
     <div className="max-h-[90vh] overflow-scroll flex flex-col text-black bg-white p-4 rounded-lg font-sans">
       {/* topheader  */}
       <div className="flex justify-between mb-2">
         <div className="flex flex-grow">
           <span className="w-24 p-4 bg-yellow-100 rounded-lg  mr-2">
-            <img className="object-contain " src={icon} alt="" />
+            <img className="object-contain " src={icon || defalutIcon} alt="" />
           </span>
           <div className="flex flex-col justify-start">
             <p className="flex-grow font-bold  mr-24">{title}</p>
@@ -23,6 +25,12 @@ const JobDesc = ({ job }) => {
         <span className="self-start border p-4 rounded-lg text-2xl">
           {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
         </span>
+      </div>
+      <div className="w-full flex justify-between items-center">
+        <div className="">
+          <p className="bg-body-color border rounded-lg font-mono p-2">{hostName + '/apply'+'/'+id}</p>
+        </div>
+        <button className="bg-accent-color rounded-lg text-white w-1/4 py-2" >Copy Link</button>
       </div>
       {/* body */}
       <div className="mx-4 font-thin *:mt-4">
@@ -43,9 +51,7 @@ const JobDesc = ({ job }) => {
           })}
         </div>
       </div>
-      <div className="w-full flex justify-end">
-        <button className="bg-accent-color rounded-lg text-white w-1/4 py-2 mt-4" >Copy Link</button>
-      </div>
+      
     </div>
   );
 };

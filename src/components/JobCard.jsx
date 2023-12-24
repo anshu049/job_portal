@@ -3,6 +3,7 @@ import { FaBookmark } from "react-icons/fa";
 import TagChip from "./TagChip";
 import { GoShieldCheck } from "react-icons/go";
 import SalaryandType from "./SalaryandType";
+import defalutIcon from "../assets/defalut_logo.png"
 
 const JobCard = ({ job, isActive}) => {
     const { title, description, icon, skills, type, salary, total } = job;
@@ -18,7 +19,7 @@ const JobCard = ({ job, isActive}) => {
           <div className="flex">
             <div className="flex flex-grow items-center">
               <span className="w-16 p-4 bg-yellow-100 rounded-lg  mr-2">
-                <img className="object-contain " src={icon} alt="" />
+                <img className="object-contain" src={icon || defalutIcon} alt="" />
               </span>
               <div className="flex-grow flex flex-col w-[10px] mr-2">
                 <p className={`truncate`}>{title}</p>

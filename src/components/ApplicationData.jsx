@@ -5,6 +5,7 @@ import TagChip from "./TagChip";
 import SalaryandType from "./SalaryandType";
 import { FaRegCopy } from "react-icons/fa";
 import SurveyComponent from "./SurveyComponent";
+import defalutIcon from "../assets/defalut_logo.png"
 
 const ApplicationData = ({ job }) => {
   const isBookmarked = false;
@@ -15,14 +16,14 @@ const ApplicationData = ({ job }) => {
       <div className="flex justify-between mb-2">
         <div className="flex flex-grow">
           <span className="w-24 p-4 bg-yellow-100 rounded-lg  mr-2">
-            <img className="object-contain " src={icon} alt="" />
+            <img className="object-contain " src={icon || defalutIcon} alt="" />
           </span>
           <div className="flex flex-col items-start">
             <p className="font-bold  mr-24">{title}</p>
             <div><SalaryandType salary={salary} type={type}/></div>
           </div>    
         </div>
-        <span className="self-start border p-4 rounded-lg text-2xl">
+        <span className="self-start border p-4 rounded-lg text-2xl cursor-pointer">
           <FaRegCopy/>
         </span>
       </div>

@@ -3,10 +3,11 @@ import { useLoaderData } from 'react-router-dom'
 
 import { getJob } from '../api/api';
 import ApplicationData from '../components/ApplicationData';
-
+import { jobListings } from '../data/sample';
+jobListings
 const Application = () => {
-    const job = useLoaderData();
-
+    const {job} = useLoaderData();
+  
   return (
     <ApplicationData job={job}/>
   )

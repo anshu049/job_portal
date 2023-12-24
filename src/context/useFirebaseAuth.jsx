@@ -46,7 +46,7 @@ export default function useFirebaseAuth() {
   const signIn = (email, password) =>
     signInWithEmailAndPassword(auth, email, password)
       .then(authUser => {
-        redirect('/');
+        return authUser
       })
       .catch(error => {
         throw(error)

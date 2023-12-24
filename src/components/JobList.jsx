@@ -1,8 +1,6 @@
 import React from "react";
-
-
-import { jobListings } from "../data/sample";
 import JobCard from "./JobCard";
+import { Link } from "react-router-dom";
 
 
 const JobList = ({ jobList }) => {
@@ -10,8 +8,10 @@ const JobList = ({ jobList }) => {
 
   return (
     <div className="h-[calc(100vh-160px)] overflow-scroll">
-      {jobListings.map((job, index) => {
-        return <JobCard job={job} key={index} />;
+      {jobList.map((job, index) => {
+        return <Link to={job.id} key={index}>
+          <JobCard job={job}  />
+        </Link>
       })}
     </div>
   );

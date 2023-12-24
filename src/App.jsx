@@ -7,7 +7,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Layout from "./layouts/Layout";
-import Jobs from "./pages/Jobs";
+import Jobs, { jobsLoader } from "./pages/Jobs";
 import Notifications from "./pages/Notifications";
 import JobDesc from "./components/JobDesc";
 import { example_job } from "./components/JobDesc";
@@ -16,6 +16,7 @@ import Responses from "./pages/Responses";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Application, { loader } from "./pages/Application";
+import JobsLayout, { jobsLayoutLoader } from "./layouts/JobsLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,13 +24,15 @@ const router = createBrowserRouter(
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<Signup/>}/>
     <Route path="/" element={<Layout />}>
-      <Route index element={<Jobs />} />
+      <Route path="/" element={<JobsLayout />}  loader={jobsLayoutLoader}>
+        <Route path=':id' element={<Jobs/>} loader={jobsLoader}/>
+      </Route>
       <Route path="notifications" element={<Notifications />} />
       <Route path="responses" element={<Responses />} />
       <Route path='test' element={<JobList/>}/>
       
     </Route>
-    <Route path="apply/:jobId" element={<Application/>} loader={loader}/>
+    <Route path="/apply/:jobId" element={<Application/>} loader={loader}/>
 
     </>
   )

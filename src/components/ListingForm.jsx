@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
     .default("Remote"),
   salary: Yup.string().required("Required"),
   requirements: Yup.array()
-    .of(Yup.string().max(100,"Not more than 100 characters for a requirement"))
+    .of(Yup.string().max(150,"Not more than 150 characters for a requirement"))
     .min(2, "Give at least 2 requirements")
     .max(8, "not more than 8 requirements")
     .required(),
@@ -40,7 +40,12 @@ const onSubmitForm = (values) => {
 };
 
 const errorRender = (msg)=>{
-    return <div className="text-red-400">{typeof msg === 'object'? msg[0] : msg}</div>
+    const type = typeof msg;
+    if(type === 'object'){
+        msg = msg.filter((item)=>item!=null);
+    }
+    console.log(msg)
+    return <div className="text-red-400">{type=== "object" ? msg[0] : msg}</div>
 }
 
 // const labelStyle = " ";
