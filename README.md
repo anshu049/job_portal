@@ -12,10 +12,9 @@ Simple Job Portal Implementation with Firebase
 ![Main Screen](./screenshots/main_screen_ss.png)
 ![Apply Form](./screenshots/apply_form_ss.png)
 ![Create New](./screenshots/create_new_ss.png)
-![Responses](./screenshots/reponses_ss.png)
-![Notifications](./screenshots/notifications.png)
-![Sign Up Screen](./screenshots/signup_ss.png)
-![Main Screen](./screenshots/main_screen_ss.png)
+![Responses](./screenshots/responses_ss.png)
+![Notifications](./screenshots/notifications_ss.png)
+
 
 
 ## Demo
