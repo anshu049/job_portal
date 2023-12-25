@@ -1,7 +1,9 @@
 import React from "react";
 import Header from "../components/Header";
-import { Outlet } from "react-router-dom";
+import { Outlet, redirect } from "react-router-dom";
 import Footer from "../components/Footer";
+import { getAuth } from "firebase/auth";
+import { app } from "../lib/firebase";
 
 const Layout = () => {
   return (
@@ -13,5 +15,13 @@ const Layout = () => {
     </div>
   );
 };
+
+export async function authLoader(){
+  const auth = getAuth(app);
+  if(!auth.currentUser){
+    return redirect('/login');
+  }
+  return null;
+}
 
 export default Layout;

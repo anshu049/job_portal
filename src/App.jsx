@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import Layout from "./layouts/Layout";
+import Layout, { authLoader } from "./layouts/Layout";
 import Jobs, { jobsLoader } from "./pages/Jobs";
 import Notifications from "./pages/Notifications";
 import Responses, { responseLoader } from "./pages/Responses";
@@ -21,7 +21,7 @@ const router = createBrowserRouter(
     <>
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<Signup/>}/>
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<Layout />} loader={authLoader}>
       <Route path="/" element={<JobsLayout />}  loader={jobsLayoutLoader}>
         <Route path=':id' element={<Jobs/>} loader={jobsLoader}/>
       </Route>
