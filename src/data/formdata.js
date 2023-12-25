@@ -9,12 +9,12 @@ export const formFieldData = {
       "title": "Personal Information",
       "elements": [{
         "type": "text",
-        "name": "first-name",
+        "name": "firstName",
         "title": "First name",
         "isRequired": true
       }, {
         "type": "text",
-        "name": "last-name",
+        "name": "lastName",
         "startWithNewLine": false,
         "title": "Last name",
         "isRequired": true
@@ -73,21 +73,21 @@ export const formFieldData = {
       "name": "position",
       "title": "What position are you applying for?",
       "choices": [{
-        "value": "frontend",
+        "value": "Frontend Developer",
         "text": "Frontend Developer"
       }, {
-        "value": "backend",
+        "value": "Backend Developer",
         "text": "Backend Developer"
       }, {
-        "value": "fullstack",
+        "value": "Full-Stack Developer",
         "text": "Full-Stack Developer"
       }, {
-        "value": "intern",
+        "value": "Intern",
         "text": "Intern"
       }]
     }, {
       "type": "text",
-      "name": "start-date",
+      "name": "startDate",
       "title": "Date available to start work",
       "isRequired": true,
       "inputType": "date"

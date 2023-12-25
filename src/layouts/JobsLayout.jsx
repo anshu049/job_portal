@@ -7,14 +7,14 @@ import Avalibitly from "../components/Avalibitly";
 import { Button, Modal } from "antd";
 import SurveyComponent from "../components/SurveyComponent";
 import ListingForm from "../components/ListingForm";
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData, useParams } from "react-router-dom";
 import { getListedJobs } from "../api/api";
 
 const JobsLayout = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {jobs} = useLoaderData()
-  console.log(jobs)
+  const {jobId} = useParams();
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -50,8 +50,8 @@ const JobsLayout = () => {
           </Modal>
         </div>
 
-        <div className={` flex justify-center overflow-y-auto `}>
-          <JobList jobList={jobs}/>
+        <div className={` flex justify-center overflow-y-auto scroll-smooth`}>
+          <JobList jobList={jobs} jobId={jobId}/>
         </div>
       </div>
       <div className="">

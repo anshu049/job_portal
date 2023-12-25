@@ -4,21 +4,23 @@ import { FaBookmark } from "react-icons/fa";
 import TagChip from "./TagChip";
 import SalaryandType from "./SalaryandType";
 import defalutIcon from "../assets/defalut_logo.png"
+import { useNavigate } from "react-router-dom";
 
 const JobDesc = ({ job }) => {
   const isBookmarked = false;
   const hostName = window.location.protocol + '//' + window.location.host;
   const { title, icon, description, requirements, skills, type, salary,id } = job;
+  const navigate = useNavigate();
   return (
-    <div className="max-h-[90vh] overflow-scroll flex flex-col text-black bg-white p-4 rounded-lg font-sans">
+    <div className="max-h-[85vh] min-h-[85vh] overflow-scroll flex flex-col text-black bg-white p-4 rounded-lg font-sans">
       {/* topheader  */}
       <div className="flex justify-between mb-2">
         <div className="flex flex-grow">
-          <span className="w-24 p-4 bg-yellow-100 rounded-lg  mr-2">
+          <span className="w-24 p-4 bg-yellow-100 rounded-lg drop-shadow-lg  mr-2">
             <img className="object-contain " src={icon || defalutIcon} alt="" />
           </span>
-          <div className="flex flex-col justify-start">
-            <p className="flex-grow font-bold  mr-24">{title}</p>
+          <div className="flex flex-col justify-start items-start">
+            <p className="font-bold  mr-24">{title}</p>
             <SalaryandType salary={salary} type={type}/>
           </div>    
         </div>
@@ -28,7 +30,9 @@ const JobDesc = ({ job }) => {
       </div>
       <div className="w-full flex justify-between items-center">
         <div className="">
-          <p className="bg-body-color border rounded-lg font-mono p-2">{hostName + '/apply'+'/'+id}</p>
+          <p className="bg-body-color border rounded-lg font-mono p-2 cursor-pointer" onClick={()=>{
+            navigate(`/apply/${id}`);
+          }}>{hostName + '/apply'+'/'+id}</p>
         </div>
         <button className="bg-accent-color rounded-lg text-white w-1/4 py-2" >Copy Link</button>
       </div>

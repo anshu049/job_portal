@@ -3,14 +3,14 @@ import JobCard from "./JobCard";
 import { Link } from "react-router-dom";
 
 
-const JobList = ({ jobList }) => {
+const JobList = ({ jobList,jobId }) => {
   const onBookmarkclick = () => {};
 
   return (
-    <div className="h-[calc(100vh-160px)] overflow-scroll">
+    <div className="h-[calc(100vh-160px)] overflow-scroll scroll-smooth">
       {jobList.map((job, index) => {
         return <Link to={job.id} key={index}>
-          <JobCard job={job}  />
+          <JobCard job={job} isActive={false} />
         </Link>
       })}
     </div>

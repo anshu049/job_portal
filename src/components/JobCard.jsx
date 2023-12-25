@@ -11,13 +11,13 @@ const JobCard = ({ job, isActive}) => {
     return (
       <>
         <div
-          className={`"flex flex-col rounded-lg p-4  shadow-md m-4 truncate text-ellipsis " ${
+          className={`"flex flex-col rounded-lg p-4  shadow-md m-4 truncate text-ellipsis" ${
             isActive ? "bg-green-200" : "bg-white"
           }`}
         >
           {/* header */}
           <div className="flex">
-            <div className="flex flex-grow items-center">
+            <div className="flex flex-grow items-center drop-shadow-lg">
               <span className="w-16 p-4 bg-yellow-100 rounded-lg  mr-2">
                 <img className="object-contain" src={icon || defalutIcon} alt="" />
               </span>

@@ -12,11 +12,12 @@ import Notifications from "./pages/Notifications";
 import JobDesc from "./components/JobDesc";
 import { example_job } from "./components/JobDesc";
 import JobList from "./components/JobList";
-import Responses from "./pages/Responses";
+import Responses, { responseLoader } from "./pages/Responses";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Application, { loader } from "./pages/Application";
 import JobsLayout, { jobsLayoutLoader } from "./layouts/JobsLayout";
+import ResponsesLayout, { responseLayoutLoader } from "./layouts/ResponsesLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +29,9 @@ const router = createBrowserRouter(
         <Route path=':id' element={<Jobs/>} loader={jobsLoader}/>
       </Route>
       <Route path="notifications" element={<Notifications />} />
-      <Route path="responses" element={<Responses />} />
+      <Route path="responses" element={<ResponsesLayout />} loader={responseLayoutLoader} >
+        <Route path=":responseId" element={<Responses/>} loader={responseLoader}/>
+      </Route>
       <Route path='test' element={<JobList/>}/>
       
     </Route>

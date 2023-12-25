@@ -5,6 +5,7 @@ import { app } from "../lib/firebase";
 
 const db = getFirestore(app)
 const listingCollectionRef = collection(db,"listings")
+const responsesCollectionRef = collection(db,"responses")
 
 export async function getListedJobs(){
     const querySnapShot = await getDocs(listingCollectionRef);
@@ -19,5 +20,20 @@ export async function getJob(id){
     const q = query(listingCollectionRef,where('id' ,'==',id))
     const jobsSnapshot= await getDocs(q);
     return {job:jobsSnapshot.docs[0].data()}
+    // return jobListings[parseInt(id)];
+}
+
+export async function getResponses(){
+    const querySnapShot = await getDocs(responsesCollectionRef);
+    const dataArray = querySnapShot.docs.map(doc=>({
+        ...doc.data()
+    }))
+    return {responses:dataArray}
+}
+
+export async function getResponse(id){
+    const q = query(responsesCollectionRef,where('id' ,'==',id))
+    const jobsSnapshot= await getDocs(q);
+    return {response:jobsSnapshot.docs[0].data()}
     // return jobListings[parseInt(id)];
 }

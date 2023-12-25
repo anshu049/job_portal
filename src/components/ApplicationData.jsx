@@ -11,11 +11,11 @@ const ApplicationData = ({ job }) => {
   const isBookmarked = false;
   const { title, icon, description, requirements, skills, type, salary } = job;
   return (
-    <div className="max-w-[90vh] m-auto mt-4 shadow-lg overflow-scroll flex flex-col text-black bg-white p-4 rounded-lg font-sans">
+    <div className="max-w-[90vh] m-auto mt-4 shadow-lg overflow-scroll flex flex-col text-black bg-white p-4 rounded-lg font-sans border-accent-color border-2">
       {/* topheader  */}
       <div className="flex justify-between mb-2">
         <div className="flex flex-grow">
-          <span className="w-24 p-4 bg-yellow-100 rounded-lg  mr-2">
+          <span className="w-24 p-4 bg-yellow-100 rounded-lg drop-shadow-lg  mr-2">
             <img className="object-contain " src={icon || defalutIcon} alt="" />
           </span>
           <div className="flex flex-col items-start">
