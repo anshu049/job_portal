@@ -25,7 +25,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<JobsLayout />}  loader={jobsLayoutLoader}>
         <Route path=':id' element={<Jobs/>} loader={jobsLoader}/>
       </Route>
-      <Route path="notifications" element={<Notifications />} />
+      <Route path="notifications" element={<Notifications />} loader={responseLayoutLoader}/>
       <Route path="responses" element={<ResponsesLayout />} loader={responseLayoutLoader} >
         <Route path=":responseId" element={<Responses/>} loader={responseLoader}/>
       </Route>

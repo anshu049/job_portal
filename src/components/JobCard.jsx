@@ -17,8 +17,8 @@ const JobCard = ({ job, isActive}) => {
         >
           {/* header */}
           <div className="flex">
-            <div className="flex flex-grow items-center drop-shadow-lg">
-              <span className="w-16 p-4 bg-yellow-100 rounded-lg  mr-2">
+            <div className="flex flex-grow items-center ">
+              <span className="w-16 p-4 min-h-16 items-center flex bg-yellow-100 rounded-lg  mr-2 drop-shadow-lg">
                 <img className="object-contain" src={icon || defalutIcon} alt="" />
               </span>
               <div className="flex-grow flex flex-col w-[10px] mr-2">

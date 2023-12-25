@@ -1,8 +1,13 @@
 import React from 'react'
+import NotificationComponent from '../components/NotificationComponent'
+
+import { useLoaderData } from 'react-router-dom'
+
 
 const Notifications = () => {
+  const {responses} = useLoaderData()
   return (
-    <div>Notifications</div>
+    <NotificationComponent notifications={responses}/>
   )
 }
 

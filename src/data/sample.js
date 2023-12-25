@@ -200,7 +200,7 @@ export const  responsesampleData = {
   startDate: "2023-12-07",
 };
 
-const userData = [
+export const userData = [
   {
     firstName: "Jhon",
     lastName: "Doe",
