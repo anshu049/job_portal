@@ -13,8 +13,10 @@ import { getListedJobs } from "../api/api";
 const JobsLayout = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {jobs} = useLoaderData()
+
+ const {jobs}= useLoaderData()
   const {jobId} = useParams();
+  
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -46,7 +48,7 @@ const JobsLayout = () => {
             onCancel={handleCancel}
             maskClosable={false}
           >
-            <ListingForm/>
+            <ListingForm onSubmit={handleOk}/>
           </Modal>
         </div>
 

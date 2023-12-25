@@ -9,9 +9,6 @@ import {
 import Layout from "./layouts/Layout";
 import Jobs, { jobsLoader } from "./pages/Jobs";
 import Notifications from "./pages/Notifications";
-import JobDesc from "./components/JobDesc";
-import { example_job } from "./components/JobDesc";
-import JobList from "./components/JobList";
 import Responses, { responseLoader } from "./pages/Responses";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -32,7 +29,7 @@ const router = createBrowserRouter(
       <Route path="responses" element={<ResponsesLayout />} loader={responseLayoutLoader} >
         <Route path=":responseId" element={<Responses/>} loader={responseLoader}/>
       </Route>
-      <Route path='test' element={<JobList/>}/>
+      
       
     </Route>
     <Route path="/apply/:jobId" element={<Application/>} loader={loader}/>

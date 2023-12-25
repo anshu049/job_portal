@@ -16,7 +16,7 @@ const Jobs = () => {
   const dataPromise = useLoaderData()  
 
   return (
-    <Suspense fallback={<Spin className='min-h-[85vh] w-full flex items-center justify-center bg-white' indicator={<LoadingOutlined style={{ fontSize: 64 ,color:'#268D61' }} spin />}/>}>
+    <Suspense fallback={<Spin className='min-h-[85vh] rounded-lg w-full flex items-center justify-center bg-white' indicator={<LoadingOutlined style={{ fontSize: 64 ,color:'#268D61' }} spin />}/>}>
       <Await resolve={dataPromise.job}>
         {({job})=><JobDesc job={job} />}
       </Await>

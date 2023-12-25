@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { IoClose } from "react-icons/io5";
+import { createNewJob } from "../api/api";
 
 
 const initialValues = {
@@ -35,8 +36,9 @@ const validationSchema = Yup.object({
     .required(),
 });
 
-const onSubmitForm = (values) => {
-  alert(JSON.stringify(values, null, 2));
+const onSubmitForm = async(values) => {
+  await createNewJob(values);
+
 };
 
 const errorRender = (msg)=>{
@@ -50,7 +52,7 @@ const errorRender = (msg)=>{
 
 // const labelStyle = " ";
 
-const ListingForm = () => {
+const ListingForm = ({onSubmit}) => {
   return (
     <div>
         <p className="font-bold text-2xl">Enter Job Requirements</p>
@@ -59,7 +61,7 @@ const ListingForm = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmitForm}
       >
-        {({ values, setFieldValue }) => (
+        {({ values, setFieldValue,isSubmitting }) => (
           <Form>
             <div className="m-1">
               <label className="font-bold block text-xl" htmlFor="title">
@@ -280,7 +282,7 @@ const ListingForm = () => {
             <div className="flex justify-end">
               <button
                 className=" block mt-4 bg-accent-color p-2 font-normal text-base text-white rounded-lg "
-                type="submit"
+                type="submit" disabled={isSubmitting} onClick={onSubmit}
               >
                 Post Job
               </button>

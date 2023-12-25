@@ -1,5 +1,5 @@
 import { jobListings } from "../data/sample";
-import {getFirestore  ,doc, collection , getDocs, query, where} from 'firebase/firestore/lite'
+import {getFirestore  ,doc, collection , getDocs, query, where,setDoc,Timestamp} from 'firebase/firestore/lite'
 import { app } from "../lib/firebase";
 
 
@@ -36,4 +36,21 @@ export async function getResponse(id){
     const jobsSnapshot= await getDocs(q);
     return {response:jobsSnapshot.docs[0].data()}
     // return jobListings[parseInt(id)];
+}
+
+export async function createNewJob(job){
+    const docRef = doc(listingCollectionRef);
+    const newId = docRef.id;
+    const time =  Timestamp.now();
+    const randomNumber = Math.floor(Math.random() * (400 - 100 + 1)) + 100;
+    const data = {...job,time:time,id:newId,total:randomNumber}
+    await setDoc(docRef,data);
+}
+
+export async function createNewResponse(response){
+    const docRef = doc(responsesCollectionRef);
+    const newId = docRef.id;
+    const time = Timestamp.now();
+    const data = {...response,time:time,id:newId};
+    await setDoc(docRef,data);
 }
