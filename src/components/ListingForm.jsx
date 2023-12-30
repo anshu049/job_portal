@@ -3,7 +3,6 @@ import * as Yup from "yup";
 import { IoClose } from "react-icons/io5";
 import { createNewJob } from "../api/api";
 
-
 const initialValues = {
   title: "",
   description: "",
@@ -26,41 +25,45 @@ const validationSchema = Yup.object({
     .default("Remote"),
   salary: Yup.string().required("Required"),
   requirements: Yup.array()
-    .of(Yup.string().max(150,"Not more than 150 characters for a requirement"))
+    .of(Yup.string().max(150, "Not more than 150 characters for a requirement"))
     .min(2, "Give at least 2 requirements")
     .max(8, "not more than 8 requirements")
     .required(),
-  skills: Yup.array(Yup.string().max(20,"Not more than 20 characters for a skill"))
+  skills: Yup.array(
+    Yup.string().max(20, "Not more than 20 characters for a skill")
+  )
     .min(3, "Mention at least 3 skills required by candidate")
     .max(8)
     .required(),
 });
 
-const onSubmitForm = async(values, { resetForm }) => {
-  await createNewJob(values);
-  resetForm()
+const errorRender = (msg) => {
+  const type = typeof msg;
+  if (type === "object") {
+    msg = msg.filter((item) => item != null);
+  }
+  return <div className="text-red-400">{type === "object" ? msg[0] : msg}</div>;
 };
-
-const errorRender = (msg)=>{
-    const type = typeof msg;
-    if(type === 'object'){
-        msg = msg.filter((item)=>item!=null);
-    }
-    return <div className="text-red-400">{type=== "object" ? msg[0] : msg}</div>
-}
 
 // const labelStyle = " ";
 
-const ListingForm = ({onSubmit}) => {
+const ListingForm = ({ onSubmit }) => {
+  const onSubmitForm = async (values, { resetForm }) => {
+    await createNewJob(values).then(() => {
+      resetForm();
+      onSubmit();
+    });
+  };
+
   return (
     <div>
-        <p className="font-bold text-2xl">Enter Job Requirements</p>
+      <p className="font-bold text-2xl">Enter Job Requirements</p>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmitForm}
       >
-        {({ values, setFieldValue,isSubmitting }) => (
+        {({ values, setFieldValue, isSubmitting }) => (
           <Form>
             <div className="m-1">
               <label className="font-bold block text-xl" htmlFor="title">
@@ -146,7 +149,7 @@ const ListingForm = ({onSubmit}) => {
                 Enter Requirements
               </label>
               <FieldArray name="requirements">
-                {({push }) => (
+                {({ push }) => (
                   <div>
                     {values.requirements.length > 0 &&
                       values.requirements.map((requirement, index) => (
@@ -202,10 +205,7 @@ const ListingForm = ({onSubmit}) => {
                   </div>
                 )}
               </FieldArray>
-              <ErrorMessage
-                render={errorRender}
-                name="requirements"
-              />
+              <ErrorMessage render={errorRender} name="requirements" />
             </div>
 
             <div className="m-1">
@@ -233,7 +233,6 @@ const ListingForm = ({onSubmit}) => {
                               type="button"
                               className="bg-accent-color p-1 text-xs font-bold text-white rounded-lg"
                               onClick={() => {
-                                
                                 setFieldValue(
                                   "skills",
                                   values.skills.filter(
@@ -270,18 +269,14 @@ const ListingForm = ({onSubmit}) => {
                   </div>
                 )}
               </FieldArray>
-              <ErrorMessage
-                
-                
-                name="skills"
-                render={errorRender}
-              />
+              <ErrorMessage name="skills" render={errorRender} />
             </div>
 
             <div className="flex justify-end">
               <button
                 className=" block mt-4 bg-accent-color p-2 font-normal text-base text-white rounded-lg "
-                type="submit" disabled={isSubmitting} onClick={onSubmit}
+                type="submit"
+                disabled={isSubmitting}
               >
                 Post Job
               </button>
