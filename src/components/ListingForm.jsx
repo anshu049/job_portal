@@ -36,9 +36,9 @@ const validationSchema = Yup.object({
     .required(),
 });
 
-const onSubmitForm = async(values) => {
+const onSubmitForm = async(values, { resetForm }) => {
   await createNewJob(values);
-
+  resetForm()
 };
 
 const errorRender = (msg)=>{
@@ -46,7 +46,6 @@ const errorRender = (msg)=>{
     if(type === 'object'){
         msg = msg.filter((item)=>item!=null);
     }
-    console.log(msg)
     return <div className="text-red-400">{type=== "object" ? msg[0] : msg}</div>
 }
 
