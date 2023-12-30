@@ -259,14 +259,14 @@ const ListingForm = ({onSubmit}) => {
                       type="button"
                       className=" mt-4 bg-accent-color p-2 font-normal text-base text-white rounded-lg"
                       onClick={() => {
-                        if (values.requirements.length < 8) {
+                        if (values.skills.length < 5) {
                           push("");
                         }
                       }}
                     >
-                      {values.requirements.length < 8
+                      {values.skills.length < 5
                         ? "Add skill +"
-                        : "Only 8 skills allowed"}
+                        : "Only 5 skills allowed"}
                     </button>
                   </div>
                 )}

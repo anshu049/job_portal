@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isButtonDisabled, setButtonDisableState] = useState(false);
-  const {authUser,signIn} = useAuthUserContext();
+  const {signIn} = useAuthUserContext();
   const [isError,setError] = useState(false)
   const navigate = useNavigate();
   const [user, setUser] = useState({

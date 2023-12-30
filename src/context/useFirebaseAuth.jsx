@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react'
-import { app } from '../lib/firebase';
+import { app, auth } from '../lib/firebase';
 import {
-  getAuth,
   signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
 } from 'firebase/auth';
 
-import { redirect } from 'react-router-dom';
 
 const formatAuthUser = (user) => ({
   uid: user.uid,
@@ -19,7 +17,7 @@ export default function useFirebaseAuth() {
   const [authUser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const auth = getAuth(app)
+  
 
 
   const authStateChanged = async (authState) => {
@@ -43,19 +41,16 @@ export default function useFirebaseAuth() {
     setLoading(false);
   };
 
-  const signIn = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password)
-      .then(authUser => {
-        return authUser
-      })
+  const  signIn = async(email, password) =>
+    await signInWithEmailAndPassword(auth, email, password)
       .catch(error => {
         throw(error)
       });
 
-  const signUp = (email, password) =>
+  const signUp = async(email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
 
-  const logOut = () =>{
+  const logOut = async() =>{
     signOut(auth).then(clear)}
 
   useEffect(() => {

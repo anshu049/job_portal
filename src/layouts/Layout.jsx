@@ -3,7 +3,8 @@ import Header from "../components/Header";
 import { Outlet, redirect } from "react-router-dom";
 import Footer from "../components/Footer";
 import { getAuth } from "firebase/auth";
-import { app } from "../lib/firebase";
+import { app, auth } from "../lib/firebase";
+
 
 const Layout = () => {
   return (
@@ -17,9 +18,9 @@ const Layout = () => {
 };
 
 export async function authLoader(){
-  const auth = getAuth(app);
+  await auth.authStateReady()
   if(!auth.currentUser){
-    return redirect('/login');
+    return redirect('/login')
   }
   return null;
 }
