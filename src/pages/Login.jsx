@@ -1,7 +1,8 @@
 
 import { useAuthUserContext } from '../context/AuthUserContext'
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
+import { auth } from '../lib/firebase';
 
 
 const Login = () => {
@@ -15,10 +16,14 @@ const Login = () => {
   });
 
   const onLogin = () => {
-    signIn(user.email,user.password).then(navigate('/',{replace:true}))
+    console.log("login clicked")
+     signIn(user.email,user.password).then(_=>{
+      navigate('/',{replace:true})
+     })
     .catch((error)=>{
       setError(true)
     })
+    
   };
 
   useEffect(() => {
@@ -65,6 +70,14 @@ const Login = () => {
       </div>
     </>
   )
+}
+
+export async function authCheckLoader(){
+  await auth.authStateReady()
+  if(auth.currentUser){
+    return redirect('/')
+  }
+  return false;
 }
 
 export default Login

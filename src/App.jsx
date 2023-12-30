@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import "./App.css";
 import {
   Route,
@@ -10,7 +10,7 @@ import Layout, { authLoader } from "./layouts/Layout";
 import Jobs, { jobsLoader } from "./pages/Jobs";
 import Notifications from "./pages/Notifications";
 import Responses, { responseLoader } from "./pages/Responses";
-import Login from "./pages/Login";
+import Login, { authCheckLoader } from "./pages/Login";
 import Signup from "./pages/Signup";
 import Application, { loader } from "./pages/Application";
 import JobsLayout, { jobsLayoutLoader } from "./layouts/JobsLayout";
@@ -19,8 +19,8 @@ import ResponsesLayout, { responseLayoutLoader } from "./layouts/ResponsesLayout
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-    <Route path="/login" element={<Login/>}/>
-    <Route path="/signup" element={<Signup/>}/>
+    <Route path="/login" element={<Login/>} loader={authCheckLoader}/>
+    <Route path="/signup" element={<Signup/>} loader={authCheckLoader}/>
     <Route path="/" element={<Layout />} loader={authLoader}>
       <Route path="/" element={<JobsLayout />}  loader={jobsLayoutLoader}>
         <Route path=':id' element={<Jobs/>} loader={jobsLoader}/>

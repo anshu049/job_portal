@@ -1,39 +1,34 @@
-import { useState, useEffect } from 'react'
-import { app, auth } from '../lib/firebase';
+import { useState, useEffect } from "react";
+import { app, auth } from "../lib/firebase";
 import {
   signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-} from 'firebase/auth';
-
+} from "firebase/auth";
 
 const formatAuthUser = (user) => ({
   uid: user.uid,
-  email: user.email
+  email: user.email,
 });
 
 export default function useFirebaseAuth() {
   const [authUser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  
-
-
   const authStateChanged = async (authState) => {
     if (!authState) {
-      setLoading(false)
+      setLoading(false);
       return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
     var formattedUser = formatAuthUser(authState);
 
     setAuthUser(formattedUser);
 
     setLoading(false);
-
   };
 
   const clear = () => {
@@ -41,24 +36,24 @@ export default function useFirebaseAuth() {
     setLoading(false);
   };
 
-  const  signIn = async(email, password) =>
-    await signInWithEmailAndPassword(auth, email, password)
-      .catch(error => {
-        throw(error)
+  const signIn = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password)
+      .then((authuser) => authuser)
+      .catch((error) => {
+        throw error;
       });
 
-  const signUp = async(email, password) =>
+  const signUp = async (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
 
-  const logOut = async() =>{
-    signOut(auth).then(clear)}
+  const logOut = async () => {
+    signOut(auth).then(clear);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, authStateChanged);
-    return unsubscribe
+    return unsubscribe;
   });
-
-  
 
   return {
     authUser,
