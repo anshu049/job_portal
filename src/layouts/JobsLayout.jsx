@@ -29,6 +29,8 @@ const JobsLayout = () => {
     setIsModalOpen(false);
   };
 
+  
+
   return (
     <div className=" grid grid-cols-[1fr_2fr_1fr] gap-4 gap-y-4  p-2">
       <div className="">

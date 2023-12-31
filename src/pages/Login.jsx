@@ -16,7 +16,6 @@ const Login = () => {
   });
 
   const onLogin = () => {
-    console.log("login clicked")
      signIn(user.email,user.password).then(_=>{
       navigate('/',{replace:true})
      })
