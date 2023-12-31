@@ -50,7 +50,7 @@ const ApplicationData = ({ job }) => {
         <button className="bg-accent-color font-bold rounded-lg text-white w-1/4 py-2 mt-4" >Apply Now</button>
       </div> */}
       <div>
-        <SurveyComponent/>
+        <SurveyComponent forJobId={job.id}/>
       </div>
     </div>
   );

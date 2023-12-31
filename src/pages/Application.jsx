@@ -7,7 +7,6 @@ import { jobListings } from '../data/sample';
 jobListings
 const Application = () => {
     const {job} = useLoaderData();
-  
   return (
     <ApplicationData job={job}/>
   )
