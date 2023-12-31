@@ -13,10 +13,9 @@ import { getListedJobs } from "../api/api";
 const JobsLayout = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [currentSelected,setSelected] = useState(null);
  const {jobs}= useLoaderData()
-  const {jobId} = useParams();
-  
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -55,11 +54,11 @@ const JobsLayout = () => {
         </div>
 
         <div className={` flex justify-center overflow-y-auto scroll-smooth`}>
-          <JobList jobList={jobs} jobId={jobId}/>
+          <JobList jobList={jobs} currentSelected={currentSelected}/>
         </div>
       </div>
       <div className="">
-        <Outlet/>
+        <Outlet context={setSelected}/>
       </div>
       <div className="h-[100%]">
         <Profile />

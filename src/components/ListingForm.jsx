@@ -2,6 +2,8 @@ import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { IoClose } from "react-icons/io5";
 import { createNewJob } from "../api/api";
+import { useNavigate, useRevalidator } from "react-router-dom";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const initialValues = {
   title: "",
@@ -48,10 +50,16 @@ const errorRender = (msg) => {
 // const labelStyle = " ";
 
 const ListingForm = ({ onSubmit }) => {
+
+  const revalidatetor = useRevalidator();
+  const navigate = useNavigate()
+
   const onSubmitForm = async (values, { resetForm }) => {
-    await createNewJob(values).then(() => {
+    await createNewJob(values).then((newId) => {
       resetForm();
       onSubmit();
+      revalidatetor.revalidate();
+      navigate(newId,{replace:true});
     });
   };
 
@@ -274,11 +282,12 @@ const ListingForm = ({ onSubmit }) => {
 
             <div className="flex justify-end">
               <button
-                className=" block mt-4 bg-accent-color p-2 font-normal text-base text-white rounded-lg "
+                className="flex items-center justify-center gap-2 block mt-4 bg-accent-color p-2 font-normal text-base text-white rounded-lg "
                 type="submit"
                 disabled={isSubmitting}
               >
-                Post Job
+                <p>Post Job</p>
+                {isSubmitting && <LoadingOutlined spin />}
               </button>
             </div>
           </Form>

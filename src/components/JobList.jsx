@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import JobCard from "./JobCard";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 
-const JobList = ({ jobList,jobId }) => {
+const JobList = ({ jobList,currentSelected }) => {
   const onBookmarkclick = () => {};
-
   return (
     <div className="h-[calc(100vh-160px)] overflow-scroll scroll-smooth">
       {jobList.map((job, index) => {
         return <Link to={job.id} key={index}>
-          <JobCard job={job} isActive={false} />
+          <JobCard job={job} isActive={currentSelected === job.id}/>
         </Link>
       })}
     </div>

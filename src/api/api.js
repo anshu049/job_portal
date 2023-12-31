@@ -45,6 +45,7 @@ export async function createNewJob(job){
     const randomNumber = Math.floor(Math.random() * (400 - 100 + 1)) + 100;
     const data = {...job,time:time,id:newId,total:randomNumber}
     await setDoc(docRef,data);
+    return newId
 }
 
 export async function createNewResponse(response){
