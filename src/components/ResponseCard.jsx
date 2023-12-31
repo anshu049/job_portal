@@ -1,10 +1,10 @@
 import React from "react";
 import defaultAvatar from "../assets/defalut_avatar.jpg";
 
-const ResponseCard = ({ fullName, appliedFor, timing }) => {
+const ResponseCard = ({ fullName, appliedFor, timing,isActive }) => {
   const time = "3d ago";
   return (
-    <div className="w-full shadow-lg rounded-lg mt-2 p-4 text-black bg-white flex">
+    <div className={`w-full shadow-lg rounded-lg mt-2 p-4 text-black flex ${isActive ? "bg-green-200":"bg-white"}`}>
       <div className="w-16 h-16 border rounded-full overflow-hidden mr-2">
         <img className="object-cover w-16 h-16" src={defaultAvatar} alt="" />
       </div>
