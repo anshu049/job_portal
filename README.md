@@ -1,8 +1,7 @@
 
-# Codepth Tech Hiring Challenge
 
 
-Simple Job Portal Implementation with Firebase
+Simple Job Portal Implementation
 
 
 ## Screenshots
@@ -41,7 +40,8 @@ password : 123456
 - React 
 - React Router Dom
 - Axios
-- Redux 
+- Redux
+- Mongodb
 - Firebase(for use auth and storage)
 - React-hot-toast
 - React-icons
